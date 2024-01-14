@@ -30,7 +30,7 @@ export default function OtpForm() {
   );
 }
 
-function OtpInput({ length = 4 }) {
+function OtpInput({ length = 6 }) {
   const [otpCode, setOtpCode] = useState(Array(length).fill(""));
   const refValues = useRef([]);
 
@@ -48,13 +48,24 @@ function OtpInput({ length = 4 }) {
     newOtp[index] = e.target.value.slice(e.target.value.length - 1);
     console.log(newOtp);
     setOtpCode(newOtp);
-    if (e.target.value && refValues.current[index + 1]) {
-      refValues.current[index + 1].focus();
+    if (
+      e.target.value &&
+      index < length &&
+      //   otpCode.length < length &&
+      refValues.current[index + 1]
+    ) {
+      otpCode[index + 1]
+        ? refValues?.current[otpCode.indexOf("")]?.focus()
+        : refValues?.current[index + 1]?.focus();
     }
   }
 
   function handleClick(index, e) {
-    refValues.current[index].setSelectionRange(0, 1);
+    refValues.current[index].setSelectionRange(1, 1);
+
+    // if (index > 0 && !otpCode[index - 1]) {
+    //   refValues.current[otpCode.indexOf("")].focus();
+    // }
   }
 
   function handleKeyDown(index, e) {
