@@ -53,7 +53,9 @@ function OtpInput({ length = 4 }) {
     }
   }
 
-  function handleClick(index, e) {}
+  function handleClick(index, e) {
+    refValues.current[index].setSelectionRange(0, 1);
+  }
 
   function handleKeyDown(index, e) {
     if (
@@ -69,7 +71,7 @@ function OtpInput({ length = 4 }) {
       refValues.current[index - 1].focus();
     }
   }
-  // ui
+
   return (
     <div>
       {otpCode.map((code, i) => (
@@ -78,7 +80,7 @@ function OtpInput({ length = 4 }) {
           ref={(node) => {
             refValues.current[i] = node;
           }}
-          className="border-2"
+          className="border-2 selection:bg-rose-400"
           value={code}
           onChange={(e) => handleChange(i, e)}
           onClick={(e) => handleClick(i, e)}
