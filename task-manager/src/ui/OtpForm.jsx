@@ -69,7 +69,7 @@ function OtpInput({ length = 4 }) {
       refValues.current[index - 1].focus();
     }
   }
-
+  // ui
   return (
     <div>
       {otpCode.map((code, i) => (
