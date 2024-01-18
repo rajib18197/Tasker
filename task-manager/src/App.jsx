@@ -1,31 +1,26 @@
-import BuyNSell from "./features/buyNsell/BuyNSell";
-import { AccordionUI } from "./ui/AccordionUI";
-import BlockGraph from "./ui/BlockGraph";
-import { ComboboxUI } from "./ui/ComboBoxUI";
-import Layout from "./ui/Layout";
-import OtpForm from "./ui/OtpForm";
-import Home from "./ui/Shadcn-Comp";
-import Skeleton from "./ui/Skeleton";
-import Syntax from "./ui/Syntax";
-import Weather from "./ui/Weather";
+import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
+import Home from "./BreadCrumb/Home";
+import ProductsListings from "./BreadCrumb/ProductsListings";
+import PostDetails from "./BreadCrumb/PostDetails";
+import BreadCrumb from "./BreadCrumb/BreadCrumb";
 
-function App() {
-  // return <Syntax />;
-  // return <BlockGraph />;
-  // return <OtpForm />;
+export default function App() {
   return (
-    <div>
-      {/* <Home />
-      <AccordionUI />
-      <ComboboxUI /> */}
-      <BuyNSell />
-    </div>
-  );
-  return (
-    <div className="w-full">
-      <Skeleton />
-    </div>
+    <BrowserRouter>
+      <nav className="flex gap-3">
+        <NavLink to={"/"}>Home</NavLink>
+        <NavLink to={"/posts"}>Posts</NavLink>
+      </nav>
+
+      <div>
+        <BreadCrumb />
+      </div>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/posts" element={<ProductsListings />} />
+        <Route path="/posts/:id" element={<PostDetails />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
