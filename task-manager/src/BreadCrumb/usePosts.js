@@ -84,3 +84,15 @@ export function usePostDetails(id) {
 
   return { postDetails, isLoading, isError, error };
 }
+
+export async function loadPlaylist(id, token, results) {
+  const data = await fetch("url");
+
+  results = [...results, data];
+
+  if (data.nextPageToken) {
+    results = await loadPlaylist(id, token, results);
+  }
+
+  return results;
+}
